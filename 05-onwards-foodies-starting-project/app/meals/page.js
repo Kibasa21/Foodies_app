@@ -1,8 +1,12 @@
 import Link from "next/link";
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
+import { getMeals } from "@/lib/meals";
 
-export default function MealsPage() {
+export default async function MealsPage() {//next.js permite async para componentes, mas não é recomendado, pois o next.js não espera o retorno da função, ele apenas renderiza o componente, então o retorno da função não é renderizado, por isso é necessário usar o await
+
+  const meals = await getMeals();
+
   return (
     <>
       <header className={classes.header}>
@@ -17,7 +21,7 @@ export default function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={[]} />
+        <MealsGrid meals={meals} />
       </main>
     </>
   );
