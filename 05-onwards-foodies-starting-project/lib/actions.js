@@ -1,6 +1,6 @@
 'use server';
 
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 
 //É bom separar as actions dos arquivos jsx porque pode haver problemas caso o componente precise usar use client ou caso o cliente tente mexer no server

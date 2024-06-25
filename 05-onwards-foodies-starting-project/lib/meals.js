@@ -23,7 +23,7 @@ export async function saveMeal(meal) {//Essa função serve para salvar um meal
     meal.instructions = xss(meal.instructions);//No instructions é usado o xss para limpar as instruções de possíveis scripts maliciosos
 
     const extension = meal.image.name.split('.').pop();//split('.') divide a string a partir do ponto, pop() pega o último elemento do array. A extension serve para pegar a extensão da imagem
-    const fileName = `${meal.slug}${Math.random() * 1e5}.${extension}`;//cria o nome do arquivo da imagem, que é o slug do meal + a extensão da imagem
+    const fileName = `${meal.slug}${Math.floor(Math.random() * 1e5)}.${extension}`;//cria o nome do arquivo da imagem, que é o slug do meal + a extensão da imagem
     //Math.random()*1e5 gera um número aleatório entre 0 e 100000, servindo para evitar que duas imagens tenham o mesmo nome
 
     const stream = fs.createWriteStream(`public/images/${fileName}`);//cria um arquivo com o nome fileName na pasta public/images
