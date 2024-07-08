@@ -27,6 +27,7 @@ export default function ImagePicker({ label, name }) {
         }
         
         fileReader.readAsDataURL(file);//readAsDataURL é um método do FileReader que lê o conteúdo do arquivo especificado e retorna um URL que representa os dados do arquivo
+        //console.log(file);
     }
 
     return (

@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 // Create a single supabase client for interacting with your database
 const supabaseUrl = 'https://kaotxhjorcwnojdtcsrl.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imthb3R4aGpvcmN3bm9qZHRjc3JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk1MjA1MzcsImV4cCI6MjAzNTA5NjUzN30.8wCPIIFiYMTu8Qn6KI7o1mrqU9DiHsVbB5dQ-mYS7T0'//process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey);
 
 const dummyMeals = [
    {
@@ -177,9 +177,9 @@ const dummyMeals = [
 ];
 
 export default async function initTable() {
-   const previous_data = await supabase.from('Meals').select();
-   if(previous_data.length > 0){
-      return;
+   const { data } = await supabase.from('Meals').select();
+   if (data.length > 0) {
+      return data;
    }
-   await supabase.from('Meals').insert(dummyMeals);
+   const { error } = await supabase.from('Meals').insert(dummyMeals);
 }

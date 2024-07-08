@@ -1,12 +1,11 @@
 import Link from "next/link";
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
-import { getMeals } from "@/lib/meals";
+import { getMeals } from "@/lib/meals_2";
 import { Suspense } from "react";
 
 async function Meals() {//Esse componente que vai fetch nos dados
   const meals = await getMeals();
-
   return <MealsGrid meals={meals} />;
 }
 
