@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import classes from './page.module.css';
-import { getMeal } from '@/lib/meals_2';
+import { getMeal } from '@/app/api/route';
 import { notFound } from 'next/navigation';
 
 export default async function DetailsPage({ params }) {
@@ -17,7 +17,7 @@ export default async function DetailsPage({ params }) {
         <>
             <header className={classes.header}>
                 <div className={classes.image}>
-                    <Image src={image} alt={meal.title} fill />
+                    <Image src={image} alt={meal.title} fill sizes='1' />
                 </div>
                 <div className={classes.headerText}>
                     <h1>{meal.title}</h1>

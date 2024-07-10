@@ -1,8 +1,14 @@
+'use client';
+
+import { useFormState } from 'react-dom';
 import ImagePicker from '@/components/meals/image-picker';
 import classes from './page.module.css';
 import { shareMeal } from '@/lib/actions';
+import MealsFormSubmit from '@/components/meals/meals-form-submit';
 
 export default function ShareMealPage() {
+
+    const [state, formAction] = useFormState(shareMeal, {message: null});//The useFormState hook is used to manage the form state, the first argument is the action that will be executed when the form is submitted, and the second argument is the initial state of the form
 
     return (
         <>
@@ -13,7 +19,7 @@ export default function ShareMealPage() {
                 <p>Or any other meal you feel needs sharing!</p>
             </header>
             <main className={classes.main}>
-                <form className={classes.form} action={shareMeal}>{/* The action attribute is used to specify where the form data should be sent */}
+                <form className={classes.form} action={formAction}>{/* The action attribute is used to specify where the form data should be sent */}
                     <div className={classes.row}>
                         <p>
                             <label htmlFor="name">Your name</label>
@@ -42,8 +48,9 @@ export default function ShareMealPage() {
                         ></textarea>
                     </p>
                     <ImagePicker label="Your image" name="image" />
+                    {state.message && <p>{state.message}</p>}
                     <p className={classes.actions}>
-                        <button type="submit">Share Meal</button>
+                        <MealsFormSubmit />
                     </p>
                 </form>
             </main>

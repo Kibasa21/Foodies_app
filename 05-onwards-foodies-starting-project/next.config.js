@@ -4,6 +4,13 @@ const nextConfig = {}
 module.exports = {
     ...nextConfig,
     images: {
-      domains: ['kaotxhjorcwnojdtcsrl.supabase.co', 'example.com', 'another-domain.com'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'kaotxhjorcwnojdtcsrl.supabase.co',
+          port: '',
+          pathname: '/**'
+        },
+      ],
     },
   };

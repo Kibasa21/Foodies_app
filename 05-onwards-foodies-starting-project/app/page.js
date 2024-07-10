@@ -1,16 +1,9 @@
-'use client';
-
 import Link from "next/link";
 
 import classes from "./page.module.css";
 import ImageSlideshow from "@/components/images/image-slideshow";
-import initTable from "@/db_postgres";
-import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() =>{
-    initTable();
-  }, []);
 
   return (
     <>

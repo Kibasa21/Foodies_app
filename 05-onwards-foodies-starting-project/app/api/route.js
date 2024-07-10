@@ -1,6 +1,7 @@
 'use server';//indica que esse arquivo será executado no servidor
 
 import { createClient } from '@supabase/supabase-js';
+import { revalidatePath } from 'next/cache';
 import fs from 'node:fs';//fs serve para manipular arquivos, como ler, escrever, deletar, etc, fs stands for file system
 
 import slugify from 'slugify';//slugify serve para transformar uma string em um slug, que é uma string com caracteres alfanuméricos e sem espaços
@@ -11,6 +12,7 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
 export async function getMeals() {//Já essa serve para pegar todos os meals
 
     const { data, error } = await supabase.from('Meals').select();//seleciona todos os dados da tabela meals .gt('id', 0)
+    
     //throw new Error('Loading meals failed.');//Só para testar o fallback de erro
     let images_url= [];
     data.map( meal => {

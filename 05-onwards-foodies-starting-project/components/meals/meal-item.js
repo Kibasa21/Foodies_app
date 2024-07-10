@@ -8,7 +8,7 @@ export default function MealItem({ title, slug, image, summary, creator }) {
     <article className={classes.meal}>
       <header>
         <div className={classes.image}>
-          <Image src={image} alt={title} fill />{/*The fill prop will make sure that the image fills the entire container and doesn't get cropped when an outsider image is used, cause an outsider image might not have the same aspect ratio as the container*/}
+          <Image src={image} alt={title} fill sizes='1' />{/*The fill prop will make sure that the image fills the entire container and doesn't get cropped when an outsider image is used, cause an outsider image might not have the same aspect ratio as the container*/}
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>

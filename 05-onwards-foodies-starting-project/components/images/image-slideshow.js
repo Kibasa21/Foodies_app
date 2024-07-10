@@ -11,7 +11,6 @@ import pizzaImg from '@/assets/pizza.jpg';
 import schnitzelImg from '@/assets/schnitzel.jpg';
 import tomatoSaladImg from '@/assets/tomato-salad.jpg';
 import classes from './image-slideshow.module.css';
-import initTable from '@/db_postgres';
 
 const images = [
   { image: burgerImg, alt: 'A delicious, juicy burger' },
@@ -27,7 +26,6 @@ export default function ImageSlideshow() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    async () => await initTable();
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex < images.length - 1 ? prevIndex + 1 : 0
