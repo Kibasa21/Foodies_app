@@ -3,6 +3,18 @@ import classes from './page.module.css';
 import { getMeal } from '@/app/api/route';
 import { notFound } from 'next/navigation';
 
+export async function generateMetadata({ params }) {//Esse generateMetadata é uma função que o next.js chama para gerar metadados para a página, ele é uma função assíncrona que recebe um objeto params que é um objeto que o next.js passa para a página, ele é um objeto que tem o slug que foi passado na URL
+    const { data: meal } = await getMeal(params.details);
+    if (!meal) {
+        notFound();
+    }
+
+    return {
+        title: meal.title,
+        description: meal.summary,
+    };
+}
+
 export default async function DetailsPage({ params }) {
 
     const { data: meal, image } = await getMeal(params.details);//params.details é o slug que foi passado na URL que veio do objeto params que é um objeto que o next.js passa para a página, ele é um objeto que tem o slug que foi passado na URL
